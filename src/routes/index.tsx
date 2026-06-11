@@ -1,19 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import {
-  Mail,
+  ArrowUpRight,
   Github,
   Linkedin,
-  ExternalLink,
-  GraduationCap,
-  Sparkles,
-  Code2,
-  Brain,
-  Server,
-  ArrowUpRight,
+  Mail,
   MapPin,
   Phone,
-  BadgeCheck,
-  Briefcase,
+  Sparkles,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -23,7 +17,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfolio of Preet Sawari Mandhwani — Junior Python Engineer, MERN-stack developer and AI builder based in Karachi, Pakistan.",
+          "Portfolio of Preet Sawari Mandhwani — Junior Python Engineer & AI developer based in Karachi, Pakistan.",
       },
     ],
   }),
@@ -34,64 +28,58 @@ const PORTRAIT =
   "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/017d69b7-3445-43c2-a6cd-2e890a8aac3c-preet-beta-vercel-app/assets/images/WhatsApp_20Image_202025-09-14_20at_2019_52_32_c319-1.jpg";
 
 const STACK = [
-  "Python", "Django", "FastAPI", "Flask", "LangChain", "PyTorch",
-  "TensorFlow", "Keras", "YOLO", "OpenCV", "React", "Node.js",
-  "Express", "MongoDB", "MySQL", "Tailwind", "JWT", "REST", "Git", "Agile",
+  "Python", "Django", "FastAPI", "LangChain", "PyTorch",
+  "TensorFlow", "React", "Node.js", "MongoDB", "Tailwind",
+  "YOLO", "OpenCV",
 ];
 
 const PROJECTS = [
   {
-    title: "AI-Powered English Learning",
-    tag: "Final Year Project",
+    n: "01",
+    title: "AI English Learning Platform",
+    role: "Final Year Project · Python · NLP · MERN",
     blurb:
-      "Full-stack AI app with NLP pipelines for grammar correction, IELTS assessment & role-based conversation simulation.",
-    stack: ["Python", "NLP", "MERN", "REST"],
-    accent: "coral",
+      "Full-stack AI app for grammar correction, IELTS practice and role-based conversation simulation using NLP pipelines served over REST.",
     href: "https://github.com/Preet411",
   },
   {
+    n: "02",
     title: "Legal Chatbot",
-    tag: "RAG · LLM",
+    role: "LangChain · RAG · Flask",
     blurb:
-      "Context-aware legal Q&A built with LangChain + RAG. Flask APIs and semantic vector search over legal documents.",
-    stack: ["LangChain", "Flask", "FAISS", "LLM"],
-    accent: "violet",
+      "Context-aware legal Q&A bot with semantic vector search and LLM reasoning over legal documents.",
     href: "https://github.com/Preet411",
   },
   {
+    n: "03",
     title: "RAG Course Assistant",
-    tag: "Education AI",
+    role: "LangChain · Vector DB · LLM",
     blurb:
-      "Retrieval-Augmented assistant trained on deep-learning books — semantic search, quiz generation & grounded answers.",
-    stack: ["LangChain", "Vector DB", "Python"],
-    accent: "amber",
+      "Retrieval-Augmented learning assistant trained on deep-learning books — semantic search, quiz generation, grounded answers.",
     href: "https://github.com/Preet411",
   },
   {
+    n: "04",
     title: "Object Detection + Context",
-    tag: "Computer Vision",
+    role: "YOLO · OpenCV · CNN",
     blurb:
-      "Real-time YOLO/CNN object detection on the COCO dataset with contextual scene description generation.",
-    stack: ["YOLO", "OpenCV", "CNN"],
-    accent: "coral",
+      "Real-time YOLO object detection on COCO with contextual scene description generation.",
     href: "https://github.com/Preet411",
   },
   {
+    n: "05",
     title: "Image Captioning System",
-    tag: "Deep Learning",
+    role: "TensorFlow · CNN · LSTM",
     blurb:
-      "End-to-end CNN + LSTM pipeline that generates natural-language captions for unseen images.",
-    stack: ["TensorFlow", "Keras", "CNN", "LSTM"],
-    accent: "violet",
+      "End-to-end deep learning pipeline that generates natural-language captions for unseen images.",
     href: "https://github.com/Preet411",
   },
   {
+    n: "06",
     title: "Doctor Appointment System",
-    tag: "MERN Stack",
+    role: "MERN · JWT · REST",
     blurb:
-      "Full-stack medical booking platform with role-based access, secure auth and availability tracking.",
-    stack: ["MongoDB", "Express", "React", "Node"],
-    accent: "amber",
+      "Full-stack medical booking platform with role-based access and availability tracking.",
     href: "https://github.com/Hammad-Zubari/Doctor-Appointment.git",
   },
 ];
@@ -101,432 +89,417 @@ const CERTS = [
   "Django Web Framework — Meta",
   "Introduction to MongoDB — MongoDB University",
   "AI for Everyone — DeepLearning.AI",
-  "Generative AI Fundamentals — Google Cloud / Udacity",
+  "Generative AI Fundamentals — Google Cloud",
 ];
 
-const accentMap: Record<string, string> = {
-  coral: "from-[color-mix(in_oklch,var(--coral)_55%,transparent)] to-transparent",
-  violet: "from-[color-mix(in_oklch,var(--violet)_55%,transparent)] to-transparent",
-  amber: "from-[color-mix(in_oklch,var(--amber)_55%,transparent)] to-transparent",
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.2, 0.7, 0.2, 1] as const } },
 };
+
+function Section({
+  id,
+  num,
+  title,
+  children,
+}: {
+  id: string;
+  num: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeUp}
+        className="flex items-end justify-between mb-12 border-b border-border pb-5"
+      >
+        <div className="flex items-baseline gap-4">
+          <span className="mono text-xs text-muted-foreground">{num}</span>
+          <h2 className="text-3xl md:text-4xl font-medium tracking-tight">
+            {title}
+          </h2>
+        </div>
+      </motion.div>
+      {children}
+    </section>
+  );
+}
 
 function Index() {
   return (
-    <div className="relative min-h-screen text-foreground grain">
+    <div className="min-h-screen">
       {/* NAV */}
-      <header className="sticky top-0 z-40">
-        <div className="mx-auto max-w-6xl px-6 pt-6">
-          <nav className="glass rounded-full px-5 py-3 flex items-center justify-between">
-            <a href="#top" className="flex items-center gap-2.5">
-              <span className="grid place-items-center w-8 h-8 rounded-full bg-gradient-to-br from-[var(--coral)] to-[var(--violet)] text-background mono font-bold text-sm">
-                P
-              </span>
-              <span className="mono text-xs text-muted-foreground hidden sm:inline">
-                preet.dev
-              </span>
-            </a>
-            <ul className="flex items-center gap-1 text-sm">
-              {[
-                { href: "#work", label: "Work" },
-                { href: "#about", label: "About" },
-                { href: "#stack", label: "Stack" },
-                { href: "#contact", label: "Contact" },
-              ].map(({ href, label }) => (
-                <li key={href}>
-                  <a
-                    href={href}
-                    className="px-3 py-1.5 rounded-full text-foreground/80 hover:text-foreground hover:bg-white/5 transition-colors mono text-xs uppercase tracking-wider"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="mailto:mandhwanipreet@gmail.com"
-              className="hidden md:inline-flex items-center gap-1.5 mono text-xs uppercase tracking-wider px-4 py-1.5 rounded-full bg-foreground text-background hover:bg-[var(--coral)] transition-colors"
-            >
-              Hire me <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-          </nav>
-        </div>
+      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
+        <nav className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+          <a href="#top" className="flex items-center gap-2 font-medium">
+            <span className="w-2 h-2 rounded-full bg-[var(--brand)] animate-pulse" />
+            Preet<span className="text-muted-foreground">.</span>
+          </a>
+          <ul className="hidden sm:flex items-center gap-7 text-sm">
+            {[
+              ["#work", "Work"],
+              ["#about", "About"],
+              ["#stack", "Stack"],
+              ["#contact", "Contact"],
+            ].map(([h, l]) => (
+              <li key={h}>
+                <a href={h} className="link-u text-foreground/80 hover:text-foreground">
+                  {l}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="mailto:mandhwanipreet@gmail.com"
+            className="inline-flex items-center gap-1.5 text-sm px-4 py-1.5 rounded-full bg-foreground text-background hover:bg-[var(--brand)] transition-colors"
+          >
+            Say hi <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </nav>
       </header>
 
       {/* HERO */}
       <section
         id="top"
-        className="relative mx-auto max-w-6xl px-6 pt-16 md:pt-24 pb-20"
+        className="relative mx-auto max-w-6xl px-6 pt-20 md:pt-32 pb-20 md:pb-28"
       >
-        <div className="grid md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-7 order-2 md:order-1">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--coral)] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--coral)]"></span>
-              </span>
-              <p className="mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Available · Summer 2026
-              </p>
-            </div>
+        <div className="absolute inset-0 dotgrid opacity-40 pointer-events-none" />
+        <div className="relative grid md:grid-cols-12 gap-10 items-center">
+          <div className="md:col-span-8">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mono text-xs uppercase tracking-[0.25em] text-muted-foreground mb-6"
+            >
+              ✦ Karachi, Pakistan — Available for work
+            </motion.p>
 
-            <h1 className="serif text-5xl md:text-7xl leading-[1.02] tracking-tight">
-              I build <span className="gradient-text">intelligent</span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.02]">
+              {"Preet Sawari".split(" ").map((word, wi) => (
+                <span key={wi} className="inline-block mr-3 overflow-hidden align-bottom">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ y: "100%" }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.1 + wi * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
               <br />
-              software with{" "}
-              <span className="italic">Python</span> &amp; <span className="italic">AI</span>.
+              <span className="overflow-hidden inline-block align-bottom">
+                <motion.span
+                  className="inline-block text-muted-foreground italic"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.32, ease: [0.2, 0.7, 0.2, 1] }}
+                >
+                  builds with Python &amp; AI.
+                </motion.span>
+              </span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-base md:text-lg text-foreground/75 leading-relaxed">
-              I&apos;m <span className="text-foreground font-medium">Preet Sawari Mandhwani</span> — a
-              Junior Python Engineer &amp; CS graduate from{" "}
-              <span className="text-foreground">Sukkur IBA University</span>. I
-              ship Django/FastAPI backends, MERN apps and AI products powered by
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="mt-8 max-w-xl text-base md:text-lg text-foreground/70 leading-relaxed"
+            >
+              Junior Python Engineer & CS graduate from Sukkur IBA. I ship
+              Django / FastAPI backends, MERN apps and AI products powered by
               LangChain, RAG and deep learning.
-            </p>
+            </motion.p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.75, duration: 0.5 }}
+              className="mt-10 flex flex-wrap items-center gap-3"
+            >
               <a
                 href="#work"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[var(--coral)] text-background mono text-xs uppercase tracking-wider hover:bg-[var(--amber)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-foreground text-background text-sm hover:bg-[var(--brand)] transition-colors"
               >
-                See my work <ArrowUpRight className="w-4 h-4" />
+                View work <ArrowUpRight className="w-4 h-4" />
               </a>
               <a
                 href="https://github.com/Preet411"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-border text-foreground/90 mono text-xs uppercase tracking-wider hover:border-[var(--coral)] hover:text-[var(--coral)] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-border text-sm hover:border-foreground transition-colors"
               >
                 <Github className="w-4 h-4" /> GitHub
               </a>
-            </div>
-
-            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 mono text-xs text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" /> Karachi, Pakistan
-              </span>
-              <span className="flex items-center gap-1.5">
-                <BadgeCheck className="w-3.5 h-3.5 text-[var(--amber)]" /> CGPA 3.28
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5" /> Ex-10Pearls Intern
-              </span>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="md:col-span-5 order-1 md:order-2 relative">
-            <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 md:w-[22rem] md:h-[22rem] float">
-              <div className="absolute -inset-6 rounded-[40%] bg-gradient-to-br from-[var(--coral)] via-[var(--violet)] to-[var(--amber)] opacity-60 blur-2xl" />
-              <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden glow-ring rotate-3">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
+            className="md:col-span-4 relative"
+          >
+            <div className="relative mx-auto w-56 h-72 sm:w-64 sm:h-80 md:w-full md:h-96">
+              <div className="absolute inset-0 rounded-3xl overflow-hidden border border-border">
                 <img
                   src={PORTRAIT}
                   alt="Portrait of Preet Sawari Mandhwani"
-                  className="w-full h-full object-cover"
-                  loading="eager"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
-              <div className="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 -rotate-6">
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 -left-4 bg-card border border-border rounded-xl px-4 py-2.5 shadow-sm"
+              >
                 <p className="mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                  Currently
+                  CGPA
                 </p>
-                <p className="text-sm font-medium">Building FYP · AI English</p>
-              </div>
-              <div className="absolute -top-3 -right-3 glass rounded-2xl px-4 py-3 rotate-6">
-                <p className="mono text-[10px] uppercase tracking-wider text-muted-foreground">
-                  Focus
-                </p>
-                <p className="text-sm font-medium">Python · LLMs · RAG</p>
-              </div>
+                <p className="font-medium">3.28 / 4.0</p>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* MARQUEE */}
-      <section className="border-y border-border/60 bg-background/40 backdrop-blur-sm py-5 overflow-hidden">
-        <div className="marquee-track flex gap-10 whitespace-nowrap">
-          {[...STACK, ...STACK].map((s, i) => (
+      <div className="border-y border-border py-6 overflow-hidden bg-card">
+        <div className="marquee-track flex gap-12 whitespace-nowrap">
+          {[...STACK, ...STACK, ...STACK].map((s, i) => (
             <span
               key={i}
-              className="serif text-2xl md:text-3xl text-foreground/40 hover:text-foreground transition-colors"
+              className="text-2xl md:text-3xl font-medium text-foreground/40 hover:text-[var(--brand)] transition-colors flex items-center gap-12"
             >
-              {s} <span className="text-[var(--coral)]">✦</span>
+              {s}
+              <span className="text-[var(--brand)]">✦</span>
             </span>
           ))}
         </div>
-      </section>
+      </div>
 
-      {/* WORK / PROJECTS */}
-      <section id="work" className="mx-auto max-w-6xl px-6 py-24">
-        <div className="flex items-end justify-between mb-12 gap-6 flex-wrap">
-          <div>
-            <p className="section-num mb-3">01 — Selected Work</p>
-            <h2 className="serif text-4xl md:text-5xl tracking-tight">
-              Things I&apos;ve <span className="gradient-text italic">built</span>.
-            </h2>
-          </div>
-          <a
-            href="https://github.com/Preet411"
-            target="_blank"
-            rel="noreferrer"
-            className="mono text-xs uppercase tracking-wider text-muted-foreground hover:text-[var(--coral)] inline-flex items-center gap-1.5"
-          >
-            All projects <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {PROJECTS.map((p) => (
-            <a
-              key={p.title}
+      {/* WORK */}
+      <Section id="work" num="01" title="Selected work">
+        <div className="divide-y divide-border border-y border-border">
+          {PROJECTS.map((p, i) => (
+            <motion.a
+              key={p.n}
               href={p.href}
               target="_blank"
               rel="noreferrer"
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 hover:-translate-y-1 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              whileHover={{ x: 6 }}
+              className="group block py-7 md:py-9 grid grid-cols-12 gap-4 items-start"
             >
-              <div
-                className={`absolute -top-20 -right-20 w-48 h-48 rounded-full bg-gradient-to-br ${accentMap[p.accent]} opacity-50 blur-2xl group-hover:opacity-90 transition-opacity`}
-              />
-              <div className="relative">
-                <p className="mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                  {p.tag}
+              <span className="col-span-2 md:col-span-1 mono text-xs text-muted-foreground pt-2">
+                {p.n}
+              </span>
+              <div className="col-span-10 md:col-span-7">
+                <h3 className="text-xl md:text-2xl font-medium group-hover:text-[var(--brand)] transition-colors">
+                  {p.title}
+                </h3>
+                <p className="mono text-xs text-muted-foreground mt-2 uppercase tracking-wider">
+                  {p.role}
                 </p>
-                <div className="mt-3 flex items-start justify-between gap-3">
-                  <h3 className="serif text-2xl leading-tight">{p.title}</h3>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-[var(--coral)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
-                </div>
-                <p className="mt-3 text-sm text-foreground/70 leading-relaxed">
-                  {p.blurb}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  {p.stack.map((s) => (
-                    <span
-                      key={s}
-                      className="mono text-[10px] px-2 py-1 rounded-full bg-white/5 border border-border text-foreground/70"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </a>
+              <p className="col-span-12 md:col-span-3 text-sm text-foreground/70 leading-relaxed">
+                {p.blurb}
+              </p>
+              <ArrowUpRight className="hidden md:block col-span-1 w-5 h-5 text-muted-foreground group-hover:text-[var(--brand)] justify-self-end mt-1 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
           ))}
         </div>
-      </section>
+      </Section>
 
-      {/* ABOUT — BENTO */}
-      <section id="about" className="mx-auto max-w-6xl px-6 py-24">
-        <p className="section-num mb-3">02 — About</p>
-        <h2 className="serif text-4xl md:text-5xl tracking-tight mb-12">
-          A quick <span className="gradient-text italic">introduction</span>.
-        </h2>
+      {/* ABOUT */}
+      <Section id="about" num="02" title="About">
+        <div className="grid md:grid-cols-12 gap-10">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="md:col-span-7 space-y-5 text-lg leading-relaxed text-foreground/80"
+          >
+            <p>
+              I&apos;m a Computer Science graduate from{" "}
+              <span className="text-foreground">Sukkur IBA University</span>{" "}
+              (May 2026) with a strong focus on Python backend development and
+              applied AI.
+            </p>
+            <p>
+              Most recently I interned at{" "}
+              <span className="text-foreground">10Pearls</span> building{" "}
+              <em>NoteSnap</em> — a full-stack notes app with Django, React and
+              MongoDB. JWT auth, RBAC, full test coverage with Jest / Mocha,
+              and code quality monitoring with SonarQube in an Agile sprint
+              cadence.
+            </p>
+            <p>
+              Outside of work I build AI products — RAG chatbots, deep learning
+              pipelines, and computer vision systems with YOLO. I care about
+              clean code, fast feedback loops and shipping things people
+              actually use.
+            </p>
+          </motion.div>
 
-        <div className="grid md:grid-cols-6 gap-4 auto-rows-[minmax(140px,auto)]">
-          {/* Bio */}
-          <div className="md:col-span-4 md:row-span-2 rounded-2xl border border-border bg-card p-7">
-            <p className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--coral)] mb-4">
-              Bio
-            </p>
-            <p className="serif text-2xl md:text-3xl leading-snug">
-              CS graduate from <span className="italic">Sukkur IBA</span>,
-              shipping <span className="gradient-text">Python backends</span>{" "}
-              and <span className="gradient-text">AI products</span> that feel
-              fast, useful and human.
-            </p>
-            <p className="mt-5 text-foreground/70 leading-relaxed">
-              Recently completed an internship at{" "}
-              <span className="text-foreground">10Pearls</span> building a
-              full-stack notes app with Django + MERN, JWT auth and
-              industry-grade testing (Jest, Mocha, SonarQube). Currently
-              building my FYP — an AI-powered English learning platform.
-            </p>
-          </div>
-
-          {/* CGPA */}
-          <div className="md:col-span-2 rounded-2xl border border-border bg-gradient-to-br from-[color-mix(in_oklch,var(--coral)_25%,var(--card))] to-card p-6 flex flex-col justify-between">
-            <p className="mono text-[10px] uppercase tracking-[0.2em] text-foreground/80">
-              CGPA
-            </p>
-            <p className="serif text-6xl">
-              3.<span className="gradient-text">28</span>
-            </p>
-          </div>
-
-          {/* Location */}
-          <div className="md:col-span-2 rounded-2xl border border-border bg-card p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
-              Based in
-            </p>
-            <p className="serif text-2xl">Karachi, PK</p>
-            <p className="mt-1 mono text-xs text-muted-foreground">
-              UTC+5 · Open to remote
-            </p>
-          </div>
-
-          {/* Experience */}
-          <div className="md:col-span-3 rounded-2xl border border-border bg-card p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
-              Experience
-            </p>
-            <div className="flex items-start gap-3">
-              <div className="grid place-items-center w-10 h-10 rounded-lg bg-[var(--coral)]/15 text-[var(--coral)] shrink-0">
-                <Briefcase className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-medium">MERN / Python Intern</h4>
-                <p className="mono text-xs text-muted-foreground">
-                  10Pearls · Sep – Dec 2025
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="md:col-span-5 space-y-4"
+          >
+            {[
+              { k: "Experience", v: "MERN / Python Intern @ 10Pearls", s: "Sep – Dec 2025" },
+              { k: "Education", v: "BS Computer Science · Sukkur IBA", s: "2022 – 2026 · CGPA 3.28" },
+              { k: "Location", v: "Karachi, Pakistan", s: "UTC+5 · Open to remote" },
+              { k: "Focus", v: "Python · AI · Full-stack", s: "Django · LangChain · MERN" },
+            ].map((row) => (
+              <div key={row.k} className="border-b border-border pb-4 flex justify-between items-start gap-4">
+                <p className="mono text-xs uppercase tracking-wider text-muted-foreground pt-1">
+                  {row.k}
                 </p>
-                <p className="text-sm text-foreground/70 mt-2">
-                  Built NoteSnap with Django, React &amp; MongoDB. JWT auth,
-                  RBAC, full test coverage, Agile sprints.
-                </p>
+                <div className="text-right">
+                  <p className="font-medium">{row.v}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{row.s}</p>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Education */}
-          <div className="md:col-span-3 rounded-2xl border border-border bg-card p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
-              Education
-            </p>
-            <div className="flex items-start gap-3">
-              <div className="grid place-items-center w-10 h-10 rounded-lg bg-[var(--violet)]/15 text-[var(--violet)] shrink-0">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="font-medium">BS Computer Science</h4>
-                <p className="mono text-xs text-muted-foreground">
-                  Sukkur IBA University · 2022 – 2026
-                </p>
-                <p className="text-sm text-foreground/70 mt-2">
-                  Focus on AI, web systems &amp; data structures. CGPA 3.28.
-                </p>
-              </div>
-            </div>
-          </div>
+            ))}
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
       {/* STACK */}
-      <section id="stack" className="mx-auto max-w-6xl px-6 py-24">
-        <p className="section-num mb-3">03 — Toolkit</p>
-        <h2 className="serif text-4xl md:text-5xl tracking-tight mb-12">
-          The <span className="gradient-text italic">tech</span> I reach for.
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            {
-              Icon: Server,
-              title: "Backend",
-              color: "var(--coral)",
-              items: "Python · Django · DRF · FastAPI · Flask · Node · Express · REST · JWT",
-            },
-            {
-              Icon: Brain,
-              title: "AI / ML",
-              color: "var(--violet)",
-              items: "PyTorch · TensorFlow · Keras · LangChain · RAG · FAISS · YOLO · OpenCV · NLP",
-            },
-            {
-              Icon: Code2,
-              title: "Frontend & Data",
-              color: "var(--amber)",
-              items: "React · Tailwind · HTML5 · MongoDB · MySQL · Pandas · NumPy · Git",
-            },
-          ].map(({ Icon, title, items, color }) => (
-            <div
-              key={title}
-              className="group rounded-2xl border border-border bg-card p-7 hover:border-foreground/30 transition-colors"
-            >
-              <div
-                className="grid place-items-center w-12 h-12 rounded-xl mb-5"
-                style={{
-                  background: `color-mix(in oklch, ${color} 18%, transparent)`,
-                  color,
-                }}
+      <Section id="stack" num="03" title="Stack & certifications">
+        <div className="grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-7 space-y-8">
+            {[
+              {
+                title: "Backend",
+                items: "Python · Django · DRF · FastAPI · Flask · Node · Express · REST · JWT",
+              },
+              {
+                title: "AI / ML",
+                items: "PyTorch · TensorFlow · Keras · LangChain · RAG · FAISS · YOLO · OpenCV · NLP · Transformers",
+              },
+              {
+                title: "Frontend & Data",
+                items: "React · Tailwind · HTML5 · MongoDB · MySQL · Pandas · NumPy · Git",
+              },
+            ].map((b, i) => (
+              <motion.div
+                key={b.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="border-b border-border pb-6"
               >
-                <Icon className="w-6 h-6" />
-              </div>
-              <h3 className="serif text-2xl mb-2">{title}</h3>
-              <p className="text-sm text-foreground/70 leading-relaxed">
-                {items}
+                <p className="mono text-xs uppercase tracking-wider text-[var(--brand)] mb-2">
+                  {b.title}
+                </p>
+                <p className="text-lg leading-relaxed">{b.items}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="md:col-span-5"
+          >
+            <div className="flex items-center gap-2 mb-5">
+              <Sparkles className="w-4 h-4 text-[var(--brand)]" />
+              <p className="mono text-xs uppercase tracking-wider text-muted-foreground">
+                Certifications
               </p>
             </div>
-          ))}
+            <ul className="space-y-3">
+              {CERTS.map((c) => (
+                <li key={c} className="flex items-start gap-3 text-sm">
+                  <span className="mono text-xs text-muted-foreground pt-0.5">→</span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
-
-        {/* Certs */}
-        <div className="mt-10 rounded-2xl border border-border bg-card p-7">
-          <div className="flex items-center gap-2 mb-5">
-            <Sparkles className="w-4 h-4 text-[var(--amber)]" />
-            <p className="mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              Certifications
-            </p>
-          </div>
-          <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
-            {CERTS.map((c) => (
-              <li
-                key={c}
-                className="flex items-start gap-2.5 text-sm text-foreground/85"
-              >
-                <BadgeCheck className="w-4 h-4 text-[var(--coral)] mt-0.5 shrink-0" />
-                {c}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      </Section>
 
       {/* CONTACT */}
-      <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
-        <div className="relative rounded-3xl overflow-hidden border border-border p-10 md:p-16 text-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-[color-mix(in_oklch,var(--coral)_30%,transparent)] via-transparent to-[color-mix(in_oklch,var(--violet)_30%,transparent)]" />
-          <div className="relative">
-            <p className="section-num mb-4">04 — Contact</p>
-            <h2 className="serif text-5xl md:text-7xl tracking-tight leading-[1]">
+      <Section id="contact" num="04" title="Get in touch">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-12 gap-10 items-start"
+        >
+          <div className="md:col-span-7">
+            <h3 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1]">
               Let&apos;s build
               <br />
-              <span className="gradient-text italic">something good.</span>
-            </h2>
-            <p className="mt-6 max-w-xl mx-auto text-foreground/75">
+              <span className="italic text-muted-foreground">
+                something good.
+              </span>
+            </h3>
+            <p className="mt-6 text-foreground/70 max-w-md">
               Open to junior Python / full-stack / AI engineering roles &amp;
-              freelance collaboration. Reach out — I reply fast.
+              freelance work.
             </p>
 
             <a
               href="mailto:mandhwanipreet@gmail.com"
-              className="mt-8 inline-flex items-center gap-2 px-7 py-4 rounded-full bg-foreground text-background mono text-xs uppercase tracking-wider hover:bg-[var(--coral)] transition-colors"
+              className="mt-8 inline-flex items-center gap-2 text-lg link-u"
             >
-              mandhwanipreet@gmail.com <ArrowUpRight className="w-4 h-4" />
+              mandhwanipreet@gmail.com <ArrowUpRight className="w-5 h-5" />
             </a>
+          </div>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              {[
-                { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/preet-sawari-mandhwani/" },
-                { Icon: Github, label: "GitHub", href: "https://github.com/Preet411" },
-                { Icon: Phone, label: "+92 315 037 4972", href: "tel:+923150374972" },
-                { Icon: Mail, label: "Email", href: "mailto:mandhwanipreet@gmail.com" },
-              ].map(({ Icon, label, href }) => (
+          <ul className="md:col-span-5 space-y-3">
+            {[
+              { Icon: Linkedin, label: "LinkedIn", v: "preet-sawari-mandhwani", href: "https://www.linkedin.com/in/preet-sawari-mandhwani/" },
+              { Icon: Github, label: "GitHub", v: "@Preet411", href: "https://github.com/Preet411" },
+              { Icon: Phone, label: "Phone", v: "+92 315 037 4972", href: "tel:+923150374972" },
+              { Icon: Mail, label: "Email", v: "mandhwanipreet@gmail.com", href: "mailto:mandhwanipreet@gmail.com" },
+              { Icon: MapPin, label: "Location", v: "Karachi, Pakistan", href: "#" },
+            ].map(({ Icon, label, v, href }) => (
+              <li key={label}>
                 <a
-                  key={label}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full glass mono text-xs hover:text-[var(--coral)] transition-colors"
+                  className="group flex items-center justify-between border-b border-border py-3 hover:border-foreground transition-colors"
                 >
-                  <Icon className="w-3.5 h-3.5" /> {label}
+                  <span className="flex items-center gap-3 text-sm">
+                    <Icon className="w-4 h-4 text-muted-foreground group-hover:text-[var(--brand)] transition-colors" />
+                    <span className="mono text-xs uppercase tracking-wider text-muted-foreground">
+                      {label}
+                    </span>
+                  </span>
+                  <span className="text-sm">{v}</span>
                 </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </Section>
 
-      <footer className="mx-auto max-w-6xl px-6 py-10 flex items-center justify-between mono text-xs text-muted-foreground border-t border-border/60">
+      <footer className="mx-auto max-w-6xl px-6 py-10 flex flex-wrap items-center justify-between gap-4 mono text-xs text-muted-foreground border-t border-border">
         <span>© {new Date().getFullYear()} Preet Sawari Mandhwani</span>
-        <span>Crafted with Python energy ✦</span>
+        <span>Designed &amp; built with care.</span>
       </footer>
     </div>
   );
