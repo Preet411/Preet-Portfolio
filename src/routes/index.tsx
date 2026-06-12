@@ -220,7 +220,8 @@ function Index() {
               transition={{ delay: 0.55, duration: 0.6 }}
               className="mt-6 max-w-xl text-base md:text-lg text-foreground/70 leading-relaxed"
             >
-              I&apos;m a BS Computer Science student (graduating <span className="text-foreground">May 2026</span>) with hands-on experience in the{" "}
+              I&apos;m a recent BS Computer Science graduate from{" "}
+              <span className="text-foreground">Sukkur IBA University</span> with hands-on experience in the{" "}
               <span className="mint">MERN stack</span> and a growing focus on{" "}
               <span className="mint">AI-powered applications</span>. I love building scalable, user-focused products.
             </motion.p>
